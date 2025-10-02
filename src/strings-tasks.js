@@ -63,8 +63,7 @@ function isString(value) {
  *   concatenateStrings('', 'bb') => 'bb'
  */
 function concatenateStrings(value1, value2) {
-  const result = value1 + value2;
-  return result;
+  return value1.concat(value2);
 }
 
 /**
@@ -79,10 +78,7 @@ function concatenateStrings(value1, value2) {
  *   getFirstChar('') => ''
  */
 function getFirstChar(value) {
-  if (value === '') {
-    return '';
-  }
-  return value[0];
+  return value.charAt(0);
 }
 
 /**
@@ -147,11 +143,7 @@ function repeatString(str, times) {
   if (times < 0) {
     return '';
   }
-  let result = '';
-  for (let i = 0; i < times; i += 1) {
-    result += str;
-  }
-  return result;
+  return str.repeat(times);
 }
 
 /**
@@ -233,12 +225,7 @@ function sumOfCodes(str) {
  *   startsWith('Hello World', 'Hello') => true
  */
 function startsWith(str, substr) {
-  for (let i = 0; i < substr.length; i += 1) {
-    if (str[i] !== substr[i]) {
-      return false;
-    }
-  }
-  return true;
+  return str.startsWith(substr);
 }
 
 /**
@@ -253,15 +240,7 @@ function startsWith(str, substr) {
  *   endsWith('Hello World', 'Hello') => false
  */
 function endsWith(str, substr) {
-  if (substr.length > str.length) {
-    return false;
-  }
-  for (let i = 0; i < substr.length; i += 1) {
-    if (str[str.length - substr.length + i] !== substr[i]) {
-      return false;
-    }
-  }
-  return true;
+  return str.endsWith(substr);
 }
 
 /**
@@ -331,19 +310,7 @@ function orderAlphabetically(str) {
  *   containsSubstring('12345', '34') => true
  */
 function containsSubstring(str, substring) {
-  for (let i = 0; i <= str.length - substring.length; i += 1) {
-    let found = true;
-    for (let j = 0; j < substring.length; j += 1) {
-      if (str[i + j] !== substring[j]) {
-        found = false;
-        break;
-      }
-    }
-    if (found) {
-      return true;
-    }
-  }
-  return false;
+  return str.includes(substring);
 }
 
 /**
@@ -579,8 +546,22 @@ function encodeToRot13(str) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-  const ranks = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
-  const suits = ['♣','♦','♥','♠'];
+  const ranks = [
+    'A',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    'J',
+    'Q',
+    'K',
+  ];
+  const suits = ['\u2663', '\u2666', '\u2665', '\u2660'];
   const rank = value.slice(0, -1);
   const suit = value.slice(-1);
   return suits.indexOf(suit) * ranks.length + ranks.indexOf(rank);
